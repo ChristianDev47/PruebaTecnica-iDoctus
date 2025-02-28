@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Exchange API - IDoctus",
+        "description": "API for retrieving the USD to EUR exchange rate. To validate empty Bearer tokens, you can use other tools like Postman or similar.",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/exchange": {
+            "get": {
+                "tags": [
+                    "Exchange"
+                ],
+                "summary": "Get current exchange rate",
+                "description": "Retrieve the current USD to EUR exchange rate.",
+                "operationId": "31b0a092b8098f01101a64d3509bd54b",
+                "responses": {
+                    "200": {
+                        "description": "Current exchange rate",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "price": {
+                                            "type": "number",
+                                            "example": 0.851357
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized: Invalid or unauthorized Bearer token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter a valid Bearer token."
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Exchange",
+            "description": "Exchange"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}
