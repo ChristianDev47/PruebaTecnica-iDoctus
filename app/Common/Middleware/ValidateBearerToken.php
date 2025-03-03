@@ -27,7 +27,7 @@ class ValidateBearerToken
 
         $token = Str::after($authHeader, 'Bearer ');
 
-        if ($token !== '' && !BracketValidator::isValid($token)) {
+        if (!BracketValidator::isValid($token)) {
             return response()->json(['error' => 'Invalid token format'], Response::HTTP_UNAUTHORIZED);
         }
 

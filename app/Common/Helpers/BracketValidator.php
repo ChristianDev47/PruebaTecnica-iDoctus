@@ -2,6 +2,8 @@
 
 namespace App\Common\Helpers;
 
+use function PHPUnit\Framework\isEmpty;
+
 class BracketValidator
 {
     /**
@@ -12,6 +14,10 @@ class BracketValidator
      */
     public static function isValid(string $token): bool
     {
+        if (empty($token)) {
+            return true;
+        }
+
         $pairs = ['(' => ')', '{' => '}', '[' => ']'];
         $stack = [];
         $validChars = array_merge(array_keys($pairs), array_values($pairs));
